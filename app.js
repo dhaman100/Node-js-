@@ -1,11 +1,10 @@
 const express = require ('express');
 const mongoose = require('mongoose');
-cos
+
 const app=express();
 const port=3000;
 
 app.use(express.json());
-app.use(cors())
 
 mongoose.connect("mongodb://localhost:27017/mydatabse",{useNewUrlParser: true});
 
@@ -21,7 +20,7 @@ const userSchema = new mongoose.Schema({
 });
 
 // Creating the collection name in the database, name of the collection in the database is 'Master' 
-//referring the userSchema and create in the mydatabase database. 
+//referring the userSchema and create in the ydatabase database. 
 const User = mongoose.model('Master',userSchema);
 
 app.post('/users',async(req,res)=>{
@@ -83,7 +82,7 @@ app.get('/users/name/:name',async(req,res)=>{
 
 app.get('/users/age/:age',async(req,res)=>{
     try{
-        const user =await User.findOne({age:req.params.age});
+        const user =await User.find({age:req.params.age});
         if(user.length === 0 ){
             return res.status(404).send({error:"user not found"})
         }
